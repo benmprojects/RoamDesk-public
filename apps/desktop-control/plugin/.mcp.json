@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "desktop": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/bin/DesktopControl.exe",
+      "args": [],
+      "env": { "DESKTOP_CONTROL_FPS": "5" }
+    }
+  }
+}

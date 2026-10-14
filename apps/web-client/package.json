@@ -1,0 +1,10 @@
+{
+  "name": "@claude-anywhere/web-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The Roam Desk web client. Plain ES modules with no build step; the desktop helper serves this folder over its HTTPS link.",
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\""
+  }
+}

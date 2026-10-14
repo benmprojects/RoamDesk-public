@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Google Play doesn't allow apps to install updates themselves: no installer permission, no self-update. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" tools:node="remove" />
+
+    <!-- Play restricts this permission to apps that justify it in a review. The app falls back to opening Android's battery
+         settings page, where "Unrestricted" can be chosen by hand. -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" tools:node="remove" />
+
+    <!-- The Play build only talks to the PC over the encrypted HTTPS link (tailscale serve), so no cleartext at all. -->
+    <application
+        android:usesCleartextTraffic="false"
+        tools:replace="android:usesCleartextTraffic">
+        <!-- One entry in Android Auto: the templated car app. The media front end is only for sideloaded installs. -->
+        <service android:name=".car.CarMediaService" tools:node="remove" />
+    </application>
+</manifest>

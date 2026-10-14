@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "web-client-mock",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["apps/web-client/test/mock-helper.mjs", "8799"],
+      "port": 8799,
+      "url": "http://127.0.0.1:8799"
+    }
+  ]
+}

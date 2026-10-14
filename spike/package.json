@@ -1,0 +1,24 @@
+{
+  "name": "roamdesk-spike",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "latency": "tsx src/latency.ts",
+    "smoke": "tsx src/smoke.ts",
+    "locked": "tsx src/locked.ts",
+    "typecheck": "tsc --noEmit",
+    "persistent": "tsx src/persistent.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "private": "true",
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

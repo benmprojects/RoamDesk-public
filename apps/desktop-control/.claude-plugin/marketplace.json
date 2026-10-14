@@ -1,0 +1,12 @@
+{
+  "name": "claude-anywhere-local",
+  "owner": { "name": "benmprojects" },
+  "description": "Plugins built in the Roam Desk repo, installed from this PC.",
+  "plugins": [
+    {
+      "name": "desktop-control",
+      "source": "./plugin",
+      "description": "Control this Windows PC's screen, mouse and keyboard from Claude Code desktop sessions."
+    }
+  ]
+}

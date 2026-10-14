@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Roam Desk</string>
+    <string name="notif_channel_drive">Drive session</string>
+    <string name="notif_channel_drive_desc">Shows while a hands-free Drive session is running.</string>
+    <string name="notif_action_talk">Talk</string>
+    <string name="notif_action_stop">Stop</string>
+</resources>

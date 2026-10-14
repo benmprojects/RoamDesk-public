@@ -1,0 +1,6 @@
+{
+  "name": "desktop-control",
+  "version": "0.1.0",
+  "description": "Fast, reliable control of this Windows PC's screen, mouse and keyboard: controls by id via UI Automation, waits that return the moment the screen changes or settles, and batched actions.",
+  "author": { "name": "benmprojects" }
+}

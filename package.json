@@ -1,0 +1,1 @@
+{"name":"claude-anywhere","private":true,"workspaces":["packages/protocol","apps/desktop-helper"],"scripts":{"helper":"npm -w apps/desktop-helper run dev","helper:build":"npm -w apps/desktop-helper run build","test":"npm -w apps/desktop-helper test","smoke":"npm --prefix spike run smoke","locked":"npm --prefix spike run locked"}}

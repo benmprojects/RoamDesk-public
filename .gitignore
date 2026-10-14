@@ -1,0 +1,16 @@
+node_modules/
+dist/
+spike/results/
+spike/workdir/
+apps/android/.gradle/
+apps/android/build/
+apps/android/app/build/
+apps/android/local.properties
+*.apk
+*.aab
+*.jks
+keystore.properties
+
+apps/desktop-control/plugin/bin/
+apps/desktop-control/src/DesktopControl/bin/
+apps/desktop-control/src/DesktopControl/obj/
