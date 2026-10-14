@@ -1,10 +1,8 @@
 # Roam Desk — Privacy Policy
 
-**DRAFT for review. Not yet published.** Items in [square brackets] must be supplied before publishing.
-
-Effective date: [DD/MM/YYYY, the day this is published]
-Developer: [developer or company name]
-Contact: [contact email address]
+Effective date: 14/10/2026
+Developer: benmprojects
+Contact: open an issue at https://github.com/benmprojects/RoamDesk-public/issues
 
 ## Summary
 
@@ -63,4 +61,4 @@ If this policy changes, the new version will be posted at this address with a ne
 
 ## Contact
 
-[contact email address]
+Questions about this policy: open an issue at https://github.com/benmprojects/RoamDesk-public/issues.

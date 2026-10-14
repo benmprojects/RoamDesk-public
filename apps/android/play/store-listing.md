@@ -57,9 +57,9 @@ For **internal testing only**, the listing isn't public, so the name matters les
 | Tags | Productivity, Tools |
 | Price | Free |
 | Contains ads | No |
-| Email (required) | [support email address] |
+| Email (required) | Enter in Play Console only (not stored in this repository) |
 | Website (optional) | [website] |
-| Privacy policy URL (required) | [where you publish privacy-policy.md] |
+| Privacy policy URL (required) | https://github.com/benmprojects/RoamDesk-public/blob/master/apps/android/play/privacy-policy.md |
 
 ## Graphics Play asks for
 
