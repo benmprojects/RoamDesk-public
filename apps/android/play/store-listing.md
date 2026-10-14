@@ -59,7 +59,7 @@ For **internal testing only**, the listing isn't public, so the name matters les
 | Contains ads | No |
 | Email (required) | Enter in Play Console only (not stored in this repository) |
 | Website (optional) | [website] |
-| Privacy policy URL (required) | https://github.com/benmprojects/RoamDesk-public/blob/master/apps/android/play/privacy-policy.md |
+| Privacy policy URL (required) | https://benmprojects.github.io/RoamDesk-public/privacy |
 
 ## Graphics Play asks for
 

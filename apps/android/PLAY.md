@@ -26,7 +26,7 @@ Each build gets a higher version number automatically, which Play requires for e
 4. **Form factors.** App settings › Advanced settings › Form factors › **Add Android Auto**.
 5. **Internal testing.** Testing › Internal testing › create a release › upload the `.aab` › add testers by email. Testers opt in through the link Play gives you and install from Play. Google's documentation says internal testing needs no Android Auto review and closed testing is non-blocking, so this is the practical route for a company-only app.
 6. **App content declarations** (all required before a release can roll out):
-   - Privacy policy URL: https://github.com/benmprojects/RoamDesk-public/blob/master/apps/android/play/privacy-policy.md
+   - Privacy policy URL: https://benmprojects.github.io/RoamDesk-public/privacy
    - Data safety form. The honest answers: no data goes to the developer; the pairing key and settings stay on the phone; speech goes to the phone's speech recogniser; messages go only to the user's own PC over Tailscale.
    - Foreground service declarations for **microphone** and **media playback**, with a short video showing Drive mode.
    - Permissions: `RECORD_AUDIO`, notifications, biometrics (all standard).
