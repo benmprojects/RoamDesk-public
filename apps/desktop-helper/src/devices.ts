@@ -57,8 +57,8 @@ export function redeemPairCode(req: PairRequest, helperName: string): PairRespon
   secretEntry(deviceId).setPassword(b64u(secret));
   devices.push({
     deviceId,
-    name: String(req.deviceName || (req.platform === "browser" ? "Browser" : "Android phone")).slice(0, 60),
-    platform: req.platform === "android" || req.platform === "browser" ? req.platform : "unknown",
+    name: String(req.deviceName || (req.platform === "browser" ? "Browser" : req.platform === "ios" ? "iPhone" : "Android phone")).slice(0, 60),
+    platform: req.platform === "android" || req.platform === "browser" || req.platform === "ios" ? req.platform : "unknown",
     createdAt: new Date().toISOString(),
   });
   save();

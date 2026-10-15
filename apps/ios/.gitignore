@@ -1,0 +1,6 @@
+RoamDesk.xcodeproj/
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.DS_Store

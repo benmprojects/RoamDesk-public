@@ -6,6 +6,7 @@ Talk to Claude hands-free from your Android phone, for example while driving, an
 |---|---|---|
 | Desktop helper | [`apps/desktop-helper`](apps/desktop-helper/README.md) | Runs on the PC. Drives the `claude` CLI on your Claude subscription, applies the safety policy, keeps the audit log, sends files and app updates to the phone, and serves the dashboard |
 | Android app | [`apps/android`](apps/android/README.md) | Voice in and out, Drive mode, steering-wheel and headset push-to-talk, Android Auto, spoken confirmations, received files, self-update |
+| iPhone app | [`apps/ios`](apps/ios/README.md) | Native SwiftUI port of the Android app: pairing, voice, Drive mode, spoken approvals, sessions and files. Built with Xcode (see its README) |
 | Web client | [`apps/web-client`](apps/web-client/README.md) | Use Claude Code on the PC from any browser on your tailnet, like the desktop app: formatted replies, tool calls and diffs, approvals, questions, plans, permission modes, model and effort, parallel sessions. Served by the helper; nothing to install |
 | Desktop control | [`apps/desktop-control`](apps/desktop-control/README.md) | A Claude Code plugin to use the PC's screen, mouse and keyboard quickly and reliably |
 | Protocol | [`packages/protocol`](packages/protocol/PROTOCOL.md) | The message format the phone and helper use to talk to each other |

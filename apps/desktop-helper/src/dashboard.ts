@@ -229,7 +229,7 @@ async function refresh() {
     ? "Encrypted link: https://" + sec.host + ":" + sec.port + " · only " + (sec.allowedUsers || []).join(", ") + (sec.plainTailnet ? " · older phones can still use the plain link" : "")
     : "Encrypted link off: " + (sec.error || "unknown");
   $("webClient").textContent = sec.host ? "Web client (any browser on your tailnet): https://" + sec.host + ":" + sec.port + "/" : "The web client needs the encrypted link.";
-  const KIND = { android: "Phone", browser: "Browser" };
+  const KIND = { android: "Phone", ios: "iPhone", browser: "Browser" };
   $("devices").innerHTML = s.devices.length ? s.devices.map((d) =>
     '<li><span class="dot ' + (d.connected ? "ok" : "") + '"></span><div style="flex:1"><div>' + esc(d.name) + ' <span class="tag">' + esc(KIND[d.platform] || "Other") + '</span></div><div class="muted" style="font-size:13px">Paired ' + esc(fmtTime(d.createdAt)) + (d.lastSeen ? " · last seen " + esc(fmtTime(d.lastSeen)) : "") + '</div></div><button class="link" data-revoke="' + esc(d.deviceId) + '">Unpair</button></li>').join("")
     : '<li class="muted">Nothing paired yet.</li>';

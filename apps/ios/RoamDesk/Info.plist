@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key><string>en</string>
+	<key>CFBundleDisplayName</key><string>Roam Desk</string>
+	<key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key><string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+	<key>CFBundleName</key><string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key><string>APPL</string>
+	<key>CFBundleShortVersionString</key><string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key><string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key><true/>
+	<key>UILaunchScreen</key><dict/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array><string>UIInterfaceOrientationPortrait</string></array>
+	<key>UIBackgroundModes</key>
+	<array><string>audio</string></array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Roam Desk listens for your spoken requests while you hold a Drive session.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Roam Desk turns what you say into text to send to Claude on your PC.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>The camera scans the pairing QR code shown on your PC.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Face ID unlocks Drive sessions, so only you can send commands to your PC.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Roam Desk talks to your PC over your private Tailscale network.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<!-- The plain ws:// link runs inside Tailscale's encrypted tunnel; the https link is preferred and tried first. -->
+		<key>NSAllowsArbitraryLoads</key><true/>
+	</dict>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key><false/>
+	</dict>
+</dict>
+</plist>

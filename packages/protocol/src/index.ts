@@ -140,7 +140,7 @@ export interface PairQr {
   secureHost?: string;
   securePort?: number;
 }
-export interface PairRequest { code: string; deviceName: string; platform: "android" | "browser" }
+export interface PairRequest { code: string; deviceName: string; platform: "android" | "ios" | "browser" }
 export interface PairResponse { deviceId: string; deviceSecret: string; helperId: string; helperName: string }
 
 export type ConfirmDecision = "confirm" | "cancel" | "timeout";
