@@ -148,22 +148,40 @@ final class PairQrTests: XCTestCase {
         #"{"v":1,"kind":"claude-anywhere-pair","name":"PC","hosts":\#(hosts),"port":8787,"code":"abc","exp":1760000300,"secureHost":"\#(secureHost)","securePort":8443\#(extra)}"#
     }
 
-    func testParsesAValidCode() throws {
+    func testParsesAValidCodeAndKeepsOnlyTheEncryptedLink() throws {
         let qr = try PairQr.parse(json())
         XCTAssertEqual(qr.secureHost, "pc.tail123.ts.net")
         XCTAssertEqual(qr.securePort, 8443)
-        XCTAssertEqual(qr.hosts, ["100.75.182.13"])
+        XCTAssertEqual(qr.hosts, [], "plain Tailscale addresses are dropped when the build requires the encrypted link")
+    }
+
+    func testBuildRequiresTheEncryptedLink() {
+        XCTAssertFalse(AppConfig.allowPlainLink)
+    }
+
+    func testPlainOnlyCodeIsRefusedWithAHelpfulMessage() {
+        XCTAssertThrowsError(try PairQr.parse(json(secureHost: ""))) { error in
+            XCTAssertTrue(error.localizedDescription.contains("encrypted link"), error.localizedDescription)
+        }
     }
 
     func testRefusesAddressesOutsideTailscale() {
         XCTAssertThrowsError(try PairQr.parse(json(secureHost: "evil.example.com")))
+        XCTAssertThrowsError(try PairQr.parse(json(secureHost: "evil.example.com"), allowPlain: true))
         XCTAssertThrowsError(try PairQr.parse(json(secureHost: "", hosts: #"["192.168.1.5"]"#)))
-        XCTAssertThrowsError(try PairQr.parse(json(secureHost: "", hosts: #"["8.8.8.8"]"#)))
+        XCTAssertThrowsError(try PairQr.parse(json(secureHost: "", hosts: #"["8.8.8.8"]"#), allowPlain: true))
     }
 
-    func testDropsNonTailnetHostsButKeepsTheRest() throws {
-        let qr = try PairQr.parse(json(hosts: #"["192.168.1.5","100.100.1.1"]"#))
+    func testPlainAddressesAreStillFilteredToTailscaleWhenAPlainBuildAllowsThem() throws {
+        let qr = try PairQr.parse(json(hosts: #"["192.168.1.5","100.100.1.1"]"#), allowPlain: true)
         XCTAssertEqual(qr.hosts, ["100.100.1.1"])
+    }
+
+    func testStoredPlainAddressesAreNotUsedToConnect() {
+        let p = Pairing(deviceId: "d", helperId: "h", helperName: "PC", hosts: ["100.100.1.1"], port: 8787, secureHost: "pc.tail123.ts.net", securePort: 8443)
+        XCTAssertEqual(p.endpoints, [Endpoint(host: "pc.tail123.ts.net", port: 8443, secure: true)])
+        let plainOnly = Pairing(deviceId: "d", helperId: "h", helperName: "PC", hosts: ["100.100.1.1"], port: 8787)
+        XCTAssertTrue(plainOnly.endpoints.isEmpty)
     }
 
     func testRejectsWrongKindVersionAndGarbage() {

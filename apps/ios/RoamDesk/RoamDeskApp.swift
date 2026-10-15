@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct RoamDeskApp: App {
-    @State private var container = AppContainer()
+    @State private var container = AppContainer.shared
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {

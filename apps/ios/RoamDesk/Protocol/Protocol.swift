@@ -85,7 +85,7 @@ struct PairQr: Equatable {
     }
 
     /// Parses and validates QR / pasted pairing JSON. Throws `Invalid` with a user-facing message.
-    static func parse(_ text: String, allowPlain: Bool = true) throws -> PairQr {
+    static func parse(_ text: String, allowPlain: Bool = AppConfig.allowPlainLink) throws -> PairQr {
         guard let data = text.trimmingCharacters(in: .whitespacesAndNewlines).data(using: .utf8),
               let obj = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
         else { throw Invalid(message: "That isn't a Roam Desk pairing code.") }

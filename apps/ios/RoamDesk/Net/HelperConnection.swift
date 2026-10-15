@@ -98,7 +98,9 @@ final class HelperConnection {
         pairing.hosts = stored.hosts.filter(TailnetHost.isAllowed)
         let endpoints = pairing.endpoints
         if endpoints.isEmpty {
-            state = .authFailed(reason: "No Tailscale addresses stored for your PC. Pair again.")
+            state = .authFailed(reason: AppConfig.allowPlainLink
+                ? "No Tailscale addresses stored for your PC. Pair again."
+                : "This phone was paired without the encrypted link. Show a fresh QR code on your PC and pair again.")
             return
         }
         lastSeq = settings.lastSeq

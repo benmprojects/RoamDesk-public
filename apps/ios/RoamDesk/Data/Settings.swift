@@ -12,10 +12,10 @@ struct Pairing: Equatable, Codable {
     var secureHost: String = ""
     var securePort: Int = 443
 
-    /// Where to connect, in order: the encrypted link first, then plain Tailscale addresses.
+    /// Where to connect, in order: the encrypted link first, then plain Tailscale addresses only if the build allows them.
     var endpoints: [Endpoint] {
         (secureHost.isEmpty ? [] : [Endpoint(host: secureHost, port: securePort, secure: true)])
-            + hosts.map { Endpoint(host: $0, port: port, secure: false) }
+            + (AppConfig.allowPlainLink ? hosts.map { Endpoint(host: $0, port: port, secure: false) } : [])
     }
 
     static var secretAccount: String { "deviceSecret" }

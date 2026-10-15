@@ -12,8 +12,21 @@ Requires iOS 17 or later, Tailscale on the iPhone (same account as the PC), and 
 | Voice in and out, "stop everything", spoken approvals | yes | yes (Apple speech recognition and `AVSpeechSynthesizer`, en-AU) |
 | Drive unlock | fingerprint / PIN | Face ID / passcode |
 | Steering-wheel and headset button | media session | headset and car play/pause via the lock-screen remote commands, kept alive by a silent audio loop while Drive is running |
-| Android Auto / CarPlay | media app and templated car app | none yet. CarPlay needs an entitlement that Apple grants by request |
+| Android Auto / CarPlay | media app and templated car app | CarPlay voice screen (code is in; it switches on once Apple grants the entitlement, see below) |
 | Self-update from the PC | yes | no. Install through TestFlight or Xcode |
+
+## CarPlay
+
+Roam Desk uses Apple's **voice-based conversational app** CarPlay category (iOS 26.4 or later): a voice control template showing the state (Ready, Listening, Working on it, Speaking, Approval needed) with action buttons for **Talk**, **Stop everything** and, when Claude asks for approval, **Confirm** and **Cancel**. Steering-wheel and headset play/pause still act as Talk. The Drive session itself is started and unlocked on the phone; the car screen says "Unlock on your iPhone" until it is.
+
+The code is in `RoamDesk/CarPlay/CarPlaySceneDelegate.swift` and the scene is registered in `Info.plist`. iOS only connects that scene when the app has the CarPlay entitlement, so until then it does nothing and the phone app is unaffected.
+
+To turn it on:
+
+1. Request the entitlement `com.apple.developer.carplay-voice-based-conversation` at https://developer.apple.com/contact/carplay (the Account Holder does this and agrees to Apple's CarPlay Entitlement Addendum). Apple reviews each request.
+2. When Apple grants it, enable the CarPlay capability on the app's App ID (Certificates, Identifiers & Profiles) and let Xcode create a new profile.
+3. In `project.yml`, under the `RoamDesk` target's `settings: base:`, add `CODE_SIGN_ENTITLEMENTS: RoamDesk/CarPlay.entitlements`, run `xcodegen generate`, and build. **Don't add that line before Apple grants the entitlement**: a build whose profile lacks it fails to sign.
+4. Test in Xcode's CarPlay simulator, then in a real car. The voice category has its own App Store review rules; see the CarPlay Developer Guide.
 
 ## Layout
 
@@ -53,5 +66,5 @@ Set `DEVELOPMENT_TEAM` in `project.yml` (or pass it to `xcodebuild`) for device 
 ## Notes
 
 - The pairing secret is kept in the Keychain (`AfterFirstUnlockThisDeviceOnly`), so Drive can reconnect with the screen locked.
-- The plain `ws://` fallback to Tailscale addresses needs App Transport Security relaxed (`NSAllowsArbitraryLoads` in `Info.plist`). The encrypted `wss://` link is always tried first, and non-Tailscale addresses are refused. For an App Store build, remove the fallback and require the encrypted link, as the Google Play build does.
+- The app only talks to the PC over the encrypted link (`wss://`/`https://` on the PC's `.ts.net` name, served by `tailscale serve`), so App Transport Security needs no exceptions. A pairing code without that link is refused with a message asking to switch on HTTPS certificates in Tailscale and show a fresh QR code. The plain `ws://` fallback to Tailscale addresses is compiled out (`AppConfig.allowPlainLink = false`), as in the Google Play build of the Android app.
 - The helper accepts `platform: "ios"` when pairing (shown as **iPhone** on the dashboard).

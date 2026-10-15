@@ -6,6 +6,9 @@ import UIKit
 @MainActor
 @Observable
 final class AppContainer {
+    /// One instance for the whole process: the phone UI and the CarPlay scene must share the same Drive session.
+    static let shared = AppContainer()
+
     let settings: SettingsStore
     let queue: OfflineQueue
     let connection: HelperConnection
